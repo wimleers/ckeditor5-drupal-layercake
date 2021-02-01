@@ -1,6 +1,7 @@
 import { Plugin } from 'ckeditor5/src/core';
 import { toWidget, toWidgetEditable } from 'ckeditor5/src/widget';
 import { Widget } from 'ckeditor5/src/widget';
+import InsertSimpleBoxCommand from './insertsimpleboxcommand';
 
 export default class SimpleBoxEditing extends Plugin {
   static get requires() {
@@ -10,6 +11,10 @@ export default class SimpleBoxEditing extends Plugin {
   init() {
     this._defineSchema();
     this._defineConverters();
+    this.editor.commands.add(
+      'insertSimpleBox',
+      new InsertSimpleBoxCommand(this.editor),
+    );
   }
 
   _defineSchema() {
@@ -29,6 +34,13 @@ export default class SimpleBoxEditing extends Plugin {
       isLimit: true,
       allowIn: 'simpleBox',
       allowContentOf: '$root',
+    });
+
+    schema.addChildCheck((context, childDefinition) => {
+      // disallow simpleBox inside simpleBoxDescription
+      if (context.endsWith('simpleBoxDescription') && childDefinition.name == 'simpleBox') {
+        return false;
+      }
     });
   }
 
