@@ -1,7 +1,26 @@
 import { Plugin } from 'ckeditor5/src/core';
+import { ButtonView } from 'ckeditor5/src/ui';
 
 export default class SimpleBoxUI extends Plugin {
   init() {
-    console.log( 'SimpleBoxUI#init() got called' );
+
+    const editor = this.editor;
+    
+    editor.ui.componentFactory.add('simpleBox', (locale) => {
+      const command = editor.commands.get('insertSimpleBox');
+      const buttonView = new ButtonView(locale);
+
+      buttonView.set({
+        label: editor.t('Simple Box'),
+        withText: true,
+        tooltip: true
+      });
+
+      buttonView.bind('isOn', 'isEnabled').to(command, 'value', 'isEnabled');
+
+      this.listenTo(buttonView, 'execute', () => editor.execute('insertSimpleBox'));
+
+      return buttonView;
+    })
   }
 }

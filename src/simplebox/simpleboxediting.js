@@ -45,7 +45,7 @@ export default class SimpleBoxEditing extends Plugin {
   }
 
   _defineConverters() {
-    const conversion = this.editor.conversion;
+    const { conversion } = this.editor;
 
     conversion.for('upcast').elementToElement({
       model: 'simpleBox',
