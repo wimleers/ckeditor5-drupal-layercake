@@ -1,5 +1,6 @@
 import { Plugin } from 'ckeditor5/src/core';
 import { ButtonView } from 'ckeditor5/src/ui';
+import icon from '../../theme/icons/simpleBox.svg';
 
 export default class SimpleBoxUI extends Plugin {
   init() {
@@ -12,7 +13,7 @@ export default class SimpleBoxUI extends Plugin {
 
       buttonView.set({
         label: editor.t('Simple Box'),
-        withText: true,
+        icon,
         tooltip: true
       });
 

@@ -1,6 +1,6 @@
 import { Plugin } from 'ckeditor5/src/core';
 import { ButtonView } from 'ckeditor5/src/ui';
-
+import icon from '../../theme/icons/twoCol.svg';
 export default class TwoColUI extends Plugin {
   init() {
     const editor = this.editor;
@@ -10,7 +10,7 @@ export default class TwoColUI extends Plugin {
 
       buttonView.set({
         label: editor.t('Two Col'),
-        withText: true,
+        icon,
         tooltip: true
       });
 
