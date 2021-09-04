@@ -58,7 +58,7 @@ export default class TwoColEditing extends Plugin {
           class: 'layout--two-col',
         });
 
-        return toWidget(section, viewWriter, { label: 'Two col layut widget' });
+        return toWidget(section, viewWriter, { label: 'Two col layout widget' });
       },
     });
 
